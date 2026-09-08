@@ -1,0 +1,28 @@
+{
+  "source_repository": "RocketSpot/focus-room",
+  "source_path": "/Users/neurotech/focus-room",
+  "source_commit": "64eb38a221050532440d1f737bfd310a836e4119",
+  "source_version": "1.0.20",
+  "captured_at": "2026-09-08T21:41:10.409484+00:00",
+  "working_tree_snapshot": true,
+  "files": {
+    "zone_sdk/connection.py": {
+      "sha256": "2dedf572426b0a5cc7e4fde8a779a83d37b11fd53f96a78194d0936dd2ce5f23",
+      "source": "sidecar/zone_sdk/connection.py"
+    },
+    "zone_sdk/ble_profiles.json": {
+      "sha256": "8d057cf5812de9d020a41f2369e386031db3ab3bff7a5acf1f159ae9f9d77f3c",
+      "source": "sidecar/zone_sdk/ble_profiles.json"
+    },
+    "focus_room/eeg_stream.py": {
+      "sha256": "64fc0b1c97a88ecaa526ff85317666f9db4ebdef3ce14ed8db7c73c6284e0eb1",
+      "source": "sidecar/eeg_stream.py"
+    }
+  },
+  "reference_files": {
+    "sidecar/zone_source.py": "d895e4a4e89211320322f8a0382574565c4a1a4827fcf07a38bf52757be4d59e",
+    "sidecar/zone_sdk/zone.py": "d05548dc17957e75ace4fb1af1789df2b6bcca2aa540be18788d8d6748125c5a",
+    "docs/eeg-hardware-confirmations.md": "af7c6b9147617068842d76d4d7af4f91ee5cad5a64371d10d45ac8477fa709ba",
+    "docs/IMPEDANCE_CHECK.md": "109b3876e0a1ae623a3ff4ba7421ee555630952d1711db6411b150fe4dd320c8"
+  }
+}
