@@ -1,0 +1,11 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const shortcuts = require('./shortcuts.js');
+const key = (value, extra={}) => ({key:value,repeat:false,target:{tagName:'BODY'},...extra});
+test('section start/end is one command, independent of recording',()=>{assert.deepEqual(shortcuts.command(key(' ')),{action:'section'});assert.deepEqual(shortcuts.command(key('p')),{action:'pause'});assert.equal(Object.values(shortcuts.defaults).includes('recording'),false)});
+test('held keys and IME composition never create repeated annotations',()=>{assert.equal(shortcuts.command(key(' ',{repeat:true})),null);assert.equal(shortcuts.command(key('1',{repeat:true}),{},[{id:'still',shortcut:'1'}]),null);assert.equal(shortcuts.command(key('m',{isComposing:true})),null)});
+test('typing and editable ancestors suppress all annotation shortcuts',()=>{for(const tagName of ['INPUT','TEXTAREA','SELECT'])assert.equal(shortcuts.command(key('m',{target:{tagName}})),null);assert.equal(shortcuts.command(key(' ',{target:{tagName:'DIV',isContentEditable:true}})),null);assert.equal(shortcuts.command(key('u',{target:{tagName:'SPAN',closest:()=>({})}})),null)});
+test('Cmd and Ctrl undo are equivalent and plain Z is unbound',()=>{assert.deepEqual(shortcuts.command(key('z',{metaKey:true})),{action:'undo'});assert.deepEqual(shortcuts.command(key('z',{ctrlKey:true})),{action:'undo'});assert.equal(shortcuts.command(key('z')),null)});
+test('favorite key carries exact selected label for atomic server switching',()=>{const label={id:'right-table',name:'Right ear on table',shortcut:'2'};assert.deepEqual(shortcuts.command(key('2'),{},[label]),{action:'label',label});assert.equal(shortcuts.command(key('2',{altKey:true}),{},[label]),null)});
+test('custom bindings replace defaults without adding recording commands',()=>{assert.deepEqual(shortcuts.command(key('s'),{section:'S'}),{action:'section'});assert.equal(shortcuts.command(key(' '),{section:'S'}),null);assert.deepEqual(shortcuts.command(key('?')),{action:'help'});assert.deepEqual(shortcuts.command(key('Escape')),{action:'cancel'})});
+test('explicitly removing a favorite shortcut does not silently restore the digit',()=>{assert.equal(shortcuts.command(key('1'),{},[{id:'still',shortcut:''}]),null)});
