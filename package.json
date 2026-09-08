@@ -1,0 +1,15 @@
+{
+  "name": "zone-eeg-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone Zone EEG acquisition and labeling research application",
+  "main": "desktop.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test ui/shortcuts.test.cjs",
+    "test:python": ".venv/bin/python -m unittest discover -s tests -p 'test_*.py'"
+  },
+  "devDependencies": {
+    "electron": "34.5.8"
+  }
+}
